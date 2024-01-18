@@ -26,6 +26,7 @@ public class TituloController {
 	@RequestMapping("/novo")
 	public ModelAndView novo() {
 		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		mv.addObject(new Titulo());
 		return mv;
 	}
 	
@@ -35,6 +36,7 @@ public class TituloController {
 		if (errors.hasErrors()) {
 			return mv;
 		}
+		
 		
 		titulos.save(titulo);
 		mv.addObject("mensagem", "Título salvo com sucesso!");
