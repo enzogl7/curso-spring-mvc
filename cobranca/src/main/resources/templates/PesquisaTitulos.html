@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorator="LayoutPadrao">
+    layout:decorate="LayoutPadrao">
     
 <head>
 	<title>Pesquisa de títulos</title>
@@ -30,8 +30,18 @@
 	   				</tr>
 	   			</thead>
 	   			<tbody>
+					   <tr th:each="titulo : ${titulos}">
+							<td class="text-center" th:text="${titulo.codigo}">1</td>
+							<td th:text="${titulo.descricao}"></td>
+							<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
+							<td class="text-right" th:text="${titulo.valor}"></td>
+							<td class="text-center" th:text="${titulo.status.descricao}"></td>
+							<td class="text-center">
+								
+							</td>
+					   </tr>
 	   				<tr>
-	   					<td colspan="6">Nenhum título foi encontrado</td>
+	   					<td colspan="6" th:if="${#lists.isEmpty(titulos)}">Nenhum título foi encontrado</td>
 	   				</tr>
 	   			</tbody>
 	   		</table>
