@@ -3,6 +3,7 @@ package com.algaworks.cobranca.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
@@ -17,7 +18,7 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 public class Titulo {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -28,6 +29,7 @@ public class Titulo {
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
 	
+	@NotNull
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 	
@@ -74,6 +76,14 @@ public class Titulo {
 		this.status = status;
 	}
 
+	public boolean isPendente() {
+		return StatusTitulo.PENDENTE.equals(this.status);
+	}
+	
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
